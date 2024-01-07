@@ -5,6 +5,8 @@ var h = window.innerHeight;
 // Setup function to create canvas
 function setup() {
     canvas = createCanvas(w, h);
+
+    
 }
 
 // Draw function to be continuously executed
@@ -13,43 +15,77 @@ function draw() {
     background(255);
 
     // Draw grid and write text
-    drawGrid();
-    writeText();
+    if(w>500){ 
+    cicrclePos = drawGrid();
+    writeText(100 , mouseX , 1);
+    print (cicrclePos.length);
+    for ( i = 0 ; i <= cicrclePos.length ; i++){
+        
+        circle(cicrclePos[i+1], cicrclePos[i] , 15);
+        
+    }
+    textSize(w/20);
+    stroke(0);
+    fill(0);
+    text("3D" , cicrclePos[1] , cicrclePos[0] );
+    text("UX/UI" , cicrclePos[2] , cicrclePos[1] );
+    text("Print" , cicrclePos[3] , cicrclePos[2] )
+
+    
+    }
+    else{
+        drawGrid();
+        writeText(40 , 60 ,1);
+
+    }
 }
 
 // Function to draw a grid on the canvas
 function drawGrid() {
     // Draw horizontal lines
+    var cicrclePos = [];
     for (let i = 100; i < w + 1000; i += 300) {
-        stroke(255, 0, 0);
-        line(0, i, i + 1000, i);
+        for (let j = 100; j < h + 1000; j += 300) {
+            stroke(255, 0, 0);
+            line(0, i, i + 1000, i);
+            stroke(255, 0, 0);
+            line(j, 0, j, j + 100);
+            
+
+            let pos = (i,j);
+            cicrclePos.push(pos);
+
+            
+        }
+    
+        
+        
     }
 
     // Draw vertical lines
-    for (let i = 100; i < h + 1000; i += 300) {
-        stroke(255, 0, 0);
-        line(i, 0, i, i + 100);
-    }
+   
 
     // Set frame rate
     frameRate(5);
+    return cicrclePos;
+    
 }
 
 // Function to write text on the canvas
-function writeText() {
+function writeText(text1 , text2 , positionRate) {
 
-    textSize(100);
+    textSize(text1);
     noFill( )
     textFont('Courier New');
-    text('A', w  /1.2 , 100 );
-    text('H', w  /1.2 , 180 );
-    text('M', w  /1.2 , 260 );
-    text('E', w  /1.2 , 340 );
-    text('D', w  /1.2 , 420 );
+    text('A', w  /1.2 , 100/positionRate );
+    text('H', w  /1.2 , 180/positionRate );
+    text('M', w  /1.2 , 260/positionRate );
+    text('E', w  /1.2 , 340/positionRate );
+    text('D', w  /1.2 , 420/positionRate );
 
 
     // Set text size based on mouseX position
-    textSize(mouseX);
+    textSize(text2);
     
 
     // Set frame rate
