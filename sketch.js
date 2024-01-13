@@ -1,6 +1,7 @@
 // Variables to store the width and height of the window
 var w = window.innerWidth;
 var h = window.innerHeight;
+var resize = w/20 ;
 
 // Setup function to create canvas
 function setup() {
@@ -24,12 +25,9 @@ function draw() {
         circle(cicrclePos[i+1], cicrclePos[i] , 15);
         
     }
-    textSize(w/20);
-    stroke(0);
-    fill(0);
-    text("3D" , cicrclePos[1] , cicrclePos[0] );
-    text("UX/UI" , cicrclePos[2] , cicrclePos[1] );
-    text("Print" , cicrclePos[3] , cicrclePos[2] )
+    
+    subjects(cicrclePos);
+    
 
     
     }
@@ -103,6 +101,17 @@ function writeText(text1 , text2 , positionRate) {
     textAlign(LEFT);
 }
 
+function subjects(params){
+    textSize(resize);
+    stroke(0);
+    fill(0);
+    text1 = text("3D" , cicrclePos[1] , cicrclePos[0] );
+    text2 = text("UX/UI" , cicrclePos[2] , cicrclePos[1] );
+    text3 = text("Print" , cicrclePos[3] , cicrclePos[2] );
+
+    //text1.mouseOver(scale(w));
+    return text1 , text2 , text3 
+};
 // Event handler for window resize
 window.onresize = function () {
     // Update width and height variables
@@ -112,3 +121,8 @@ window.onresize = function () {
     // Resize canvas accordingly
     canvas.size(w, h);
 };
+
+function resiize (){
+    resize = w /10 ; 
+    
+}
