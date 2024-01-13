@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<h1> my protfolio</h1>
+{% endblock %}
+{% block body %}
+   
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.js"></script>
+    <script src="{{ url_for('static', filename='js/sketch.js') }}"></script>
+{% endblock %}
